@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CLINICA EL TURRIS - PACIENTES</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { margin: 0; background-color: #F5F5F5; }
+        header { background-color: #FFFACD; color: black; text-align: center; padding: 20px; border-bottom: 2px solid #F0E68C; }
+        header h1 { margin: 5px 0; font-size: 28px; }
+        .container { display: flex; width: 100%; min-height: 100vh; }
+        nav { flex: 20%; background-color: #F0E68C; padding: 20px; border-right: 1px solid #dcd373; }
+        nav h3 { margin-top: 0; font-size: 18px; border-bottom: 1px solid black; padding-bottom: 5px; }
+        nav ul { list-style: none; padding: 0; margin: 0; }
+        nav ul li { margin-bottom: 15px; }
+        nav a { display: block; color: black; font-weight: bold; text-decoration: none; padding: 8px 5px; border-radius: 4px; }
+        nav a:hover { background-color: #FFFACD; text-decoration: underline; }
+        main { flex: 80%; padding: 25px; background-color: #F5F5F5; }
+        main h2 { margin-top: 0; color: #333; }
+        .form-container { background: white; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 2px solid #F0E68C; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .form-container h3 { margin-top: 0; color: #333; border-bottom: 1px solid #F0E68C; padding-bottom: 5px; }
+        .form-group { margin-bottom: 12px; display: inline-block; width: 24%; padding: 0 5px; vertical-align: top; }
+        .form-group-full { margin-bottom: 12px; display: inline-block; width: 48%; padding: 0 5px; vertical-align: top; }
+        label { display: block; font-weight: bold; font-size: 13px; margin-bottom: 4px; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
+        .btn-submit { background-color: #F0E68C; color: black; border: 1px solid #dcd373; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 14px; }
+        .btn-submit:hover { background-color: #e6dc7e; }
+        .table-responsive { width: 100%; overflow-x: auto; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; background-color: white; font-size: 13px; min-width: 1100px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #F0E68C; color: black; font-weight: bold; }
+        tr:nth-child(even) { background-color: #F9F9F9; }
+        footer { background-color: #FFFACD; text-align: center; padding: 15px; font-size: 13px; border-top: 2px solid #F0E68C; }
+        footer p { margin: 4px 0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CLINICA EL TURRIS</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <h3>MENU</h3>
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="pacientes.html" style="background-color: #FFFACD; text-decoration: underline;">PACIENTES</a></li>
+                <li><a href="medicos.html">MEDICOS</a></li>
+                <li><a href="citas.html">CITAS</a></li>
+                <li><a href="historiales.html">HISTORIALES</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Control de Pacientes</h2>
+            <p>Seccion para el registro y visualizacion de pacientes de la clinica:</p>
+            <div class="form-container">
+                <h3>Alta de Nuevo Paciente</h3>
+                <form id="formPacientes">
+                    <div class="form-group"><label>ID / No.:</label><input type="text" id="p_id" required placeholder="Ej. 011"></div>
+                    <div class="form-group"><label>Apellidos:</label><input type="text" id="p_apellidos" required></div>
+                    <div class="form-group"><label>Nombre:</label><input type="text" id="p_nombre" required></div>
+                    <div class="form-group"><label>Edad:</label><input type="text" id="p_edad" required placeholder="Ej. 25 anos"></div>
+                    <div class="form-group"><label>Genero:</label><input type="text" id="p_genero" required placeholder="femenino / masculino"></div>
+                    <div class="form-group"><label>Tipo Sangre:</label><input type="text" id="p_sangre" required placeholder="Ej. O+"></div>
+                    <div class="form-group"><label>Padecimiento:</label><input type="text" id="p_padecimiento" required></div>
+                    <div class="form-group"><label>RFC / CURP:</label><input type="text" id="p_rfc" required></div>
+                    <div class="form-group"><label>Asegurado (si/no):</label><input type="text" id="p_asegurado" required></div>
+                    <div class="form-group"><label>Telefono:</label><input type="text" id="p_tel" required></div>
+                    <div class="form-group-full"><label>Email:</label><input type="email" id="p_correo" required></div>
+                    <div class="form-group-full"><label>Direccion:</label><input type="text" id="p_dir" required></div>
+                    <button type="submit" class="btn-submit">Registrar Paciente</button>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table id="tablaPacientes">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Apellidos</th>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Genero</th>
+                            <th>Sangre</th>
+                            <th>Padecimiento</th>
+                            <th>RFC / CURP</th>
+                            <th>Asegurado</th>
+                            <th>Telefono</th>
+                            <th>Email</th>
+                            <th>Direccion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Sanz Lara</td>
+                            <td>Alejandra</td>
+                            <td>40 anos</td>
+                            <td>femenino</td>
+                            <td>O+</td>
+                            <td>asma infantil</td>
+                            <td>SALA850315XZA</td>
+                            <td>si</td>
+                            <td>+56 787 922 8493</td>
+                            <td>Alexasanz85@gmail.com</td>
+                            <td>calle mora 126</td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Ferrer Ponz</td>
+                            <td>Beatriz</td>
+                            <td>35 anos</td>
+                            <td>femenino</td>
+                            <td>A-</td>
+                            <td>ninguno</td>
+                            <td>FEP1393072213ZK</td>
+                            <td>si</td>
+                            <td>+52 611 224 1368</td>
+                            <td>bferre.92@gmail.com</td>
+                            <td>calle del mar 10 valencia</td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>Mendez Ruiz</td>
+                            <td>Carlos</td>
+                            <td>67 anos</td>
+                            <td>masculino</td>
+                            <td>B+</td>
+                            <td>hipertension</td>
+                            <td>MERC5907223TZK</td>
+                            <td>si</td>
+                            <td>+52 852 321 1345</td>
+                            <td>carmendezR@gmail.com</td>
+                            <td>av.orozco 57-0</td>
+                        </tr>
+                        <tr>
+                            <td>004</td>
+                            <td>Vega Solis</td>
+                            <td>Daniela</td>
+                            <td>17 anos</td>
+                            <td>femenino</td>
+                            <td>O-</td>
+                            <td>prematuro</td>
+                            <td>ninguno</td>
+                            <td>si</td>
+                            <td>+52 311 005 6784</td>
+                            <td>DaniVegas56@gmail.com</td>
+                            <td>paseo losolivos 12 seccion A</td>
+                        </tr>
+                        <tr>
+                            <td>005</td>
+                            <td>Gomez Paz</td>
+                            <td>Eduardo</td>
+                            <td>50 anos</td>
+                            <td>masculino</td>
+                            <td>AB+</td>
+                            <td>ninguno</td>
+                            <td>GOPE7601013SLQ</td>
+                            <td>si</td>
+                            <td>+52 678 932 1115</td>
+                            <td>edu.gomezpaz@gmail.com</td>
+                            <td>paseo granada 18 seccion B</td>
+                        </tr>
+                        <tr>
+                            <td>006</td>
+                            <td>Laura Solis</td>
+                            <td>Fernanda</td>
+                            <td>26 anos</td>
+                            <td>femenino</td>
+                            <td>O+</td>
+                            <td>diabetes</td>
+                            <td>LASF001112HSQ</td>
+                            <td>si</td>
+                            <td>+52 553 487 2353</td>
+                            <td>fer.lunasol@gmail.com</td>
+                            <td>av del mar 528</td>
+                        </tr>
+                        <tr>
+                            <td>007</td>
+                            <td>Castro Dominguez</td>
+                            <td>Gabriel</td>
+                            <td>37 anos</td>
+                            <td>masculino</td>
+                            <td>A+</td>
+                            <td>diabetes tipo 2</td>
+                            <td>CADG891212MNO</td>
+                            <td>si</td>
+                            <td>+52 651 893 2345</td>
+                            <td>Gacastro@gmail.com</td>
+                            <td>calle falia 123 malaga</td>
+                        </tr>
+                        <tr>
+                            <td>008</td>
+                            <td>Ortiz Ogaz</td>
+                            <td>Helena</td>
+                            <td>30 anos</td>
+                            <td>femenino</td>
+                            <td>B-</td>
+                            <td>migrana</td>
+                            <td>OROMG960707ABP</td>
+                            <td>si</td>
+                            <td>+52 656 374 6972</td>
+                            <td>helenaortizo@gmail.com</td>
+                            <td>calle luna zaragoza 56-9</td>
+                        </tr>
+                        <tr>
+                            <td>009</td>
+                            <td>Marin Jara</td>
+                            <td>Ignacio</td>
+                            <td>70 anos</td>
+                            <td>masculino</td>
+                            <td>O+</td>
+                            <td>fumador activo</td>
+                            <td>MAJI560228MPS</td>
+                            <td>si</td>
+                            <td>+52 656 789 3883</td>
+                            <td>IgnacioJara@gmail.com</td>
+                            <td>Av.central 1010 mallorca</td>
+                        </tr>
+                        <tr>
+                            <td>010</td>
+                            <td>Gonzalez Quinonez</td>
+                            <td>Julia</td>
+                            <td>28 anos</td>
+                            <td>femenino</td>
+                            <td>A+</td>
+                            <td>ninguno</td>
+                            <td>GOQJ980707XN</td>
+                            <td>si</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <p>NOMBRE: LOZANO LINARES MARCO ANTONIO | NO. CONTROL: 0587</p>
+        <p>SEMESTRE: 4TO SEMESTRE | GRUPO: 4*I | ESPECIALIDAD: PROGRAMACION</p>
+    </footer>
+    <script>
+        document.getElementById('formPacientes').onsubmit = function(e) {
+            e.preventDefault();
+            let tabla = document.getElementById('tablaPacientes').getElementsByTagName('tbody')[0];
+            let fila = tabla.insertRow();
+            fila.innerHTML = `
+                <td>${document.getElementById('p_id').value}</td>
+                <td>${document.getElementById('p_apellidos').value}</td>
+                <td>${document.getElementById('p_nombre').value}</td>
+                <td>${document.getElementById('p_edad').value}</td>
+                <td>${document.getElementById('p_genero').value}</td>
+                <td>${document.getElementById('p_sangre').value}</td>
+                <td>${document.getElementById('p_padecimiento').value}</td>
+                <td>${document.getElementById('p_rfc').value}</td>
+                <td>${document.getElementById('p_asegurado').value}</td>
+                <td>${document.getElementById('p_tel').value}</td>
+                <td>${document.getElementById('p_correo').value}</td>
+                <td>${document.getElementById('p_dir').value}</td>
+            `;
+            this.reset();
+        };
+    </script>
+</body>
+</html>

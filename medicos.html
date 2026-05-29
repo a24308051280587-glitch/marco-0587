@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CLINICA EL TURRIS - MEDICOS</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { margin: 0; background-color: #F5F5F5; }
+        header { background-color: #FFFACD; color: black; text-align: center; padding: 20px; border-bottom: 2px solid #F0E68C; }
+        header h1 { margin: 5px 0; font-size: 28px; }
+        .container { display: flex; width: 100%; min-height: 100vh; }
+        nav { flex: 20%; background-color: #F0E68C; padding: 20px; border-right: 1px solid #dcd373; }
+        nav h3 { margin-top: 0; font-size: 18px; border-bottom: 1px solid black; padding-bottom: 5px; }
+        nav ul { list-style: none; padding: 0; margin: 0; }
+        nav ul li { margin-bottom: 15px; }
+        nav a { display: block; color: black; font-weight: bold; text-decoration: none; padding: 8px 5px; border-radius: 4px; }
+        nav a:hover { background-color: #FFFACD; text-decoration: underline; }
+        main { flex: 80%; padding: 25px; background-color: #F5F5F5; }
+        main h2 { margin-top: 0; color: #333; }
+        .form-container { background: white; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 2px solid #F0E68C; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .form-container h3 { margin-top: 0; color: #333; border-bottom: 1px solid #F0E68C; padding-bottom: 5px; }
+        .form-group { margin-bottom: 12px; display: inline-block; width: 24%; padding: 0 5px; vertical-align: top; }
+        .form-group-full { margin-bottom: 12px; display: inline-block; width: 48%; padding: 0 5px; vertical-align: top; }
+        label { display: block; font-weight: bold; font-size: 13px; margin-bottom: 4px; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
+        .btn-submit { background-color: #F0E68C; color: black; border: 1px solid #dcd373; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 14px; }
+        .btn-submit:hover { background-color: #e6dc7e; }
+        .table-responsive { width: 100%; overflow-x: auto; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; background-color: white; font-size: 13px; min-width: 1200px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #F0E68C; color: black; font-weight: bold; }
+        tr:nth-child(even) { background-color: #F9F9F9; }
+        footer { background-color: #FFFACD; text-align: center; padding: 15px; font-size: 13px; border-top: 2px solid #F0E68C; }
+        footer p { margin: 4px 0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CLINICA EL TURRIS</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <h3>MENU</h3>
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="pacientes.html">PACIENTES</a></li>
+                <li><a href="medicos.html" style="background-color: #FFFACD; text-decoration: underline;">MEDICOS</a></li>
+                <li><a href="citas.html">CITAS</a></li>
+                <li><a href="historiales.html">HISTORIALES</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Control de Medicos</h2>
+            <p>Seccion para el registro y visualizacion de medicos especialistas de la clinica:</p>
+            <div class="form-container">
+                <h3>Alta de Nuevo Medico</h3>
+                <form id="formMedicos">
+                    <div class="form-group"><label>ID Medico:</label><input type="text" id="m_id" required></div>
+                    <div class="form-group"><label>Nombre del Medico:</label><input type="text" id="m_nombre" required></div>
+                    <div class="form-group"><label>Especialidad:</label><input type="text" id="m_especialidad" required></div>
+                    <div class="form-group"><label>Num Colegiado:</label><input type="text" id="m_colegiado" required></div>
+                    <div class="form-group"><label>Turno:</label><input type="text" id="m_turno" required placeholder="matutino / vespertino"></div>
+                    <div class="form-group"><label>Nacimiento:</label><input type="text" id="m_nacimiento" required placeholder="DD/MM/AA"></div>
+                    <div class="form-group"><label>Horario:</label><input type="text" id="m_horario" required></div>
+                    <div class="form-group"><label>RFC:</label><input type="text" id="m_rfc" required></div>
+                    <div class="form-group-full"><label>Correo Electronico:</label><input type="email" id="m_correo" required></div>
+                    <div class="form-group-full"><label>Direccion:</label><input type="text" id="m_direccion" required></div>
+                    <button type="submit" class="btn-submit">Registrar Medico</button>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table id="tablaMedicos">
+                    <thead>
+                        <tr>
+                            <th>id_medico</th>
+                            <th>nombre_medico</th>
+                            <th>especialidad</th>
+                            <th>num_colegiado</th>
+                            <th>turno</th>
+                            <th>nacimiento</th>
+                            <th>horario</th>
+                            <th>correo</th>
+                            <th>RFC</th>
+                            <th>direccion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1348</td>
+                            <td>Dr.Roberto Arieta</td>
+                            <td>medicina general</td>
+                            <td>MG-4500</td>
+                            <td>matutino</td>
+                            <td>13/05/75</td>
+                            <td>7:00 am/12:00 pm</td>
+                            <td>RobertoArieta@gmail.com</td>
+                            <td>ARMP750513MOP</td>
+                            <td>av.morales 1029-10</td>
+                        </tr>
+                        <tr>
+                            <td>8321</td>
+                            <td>Dra.Elena Pineda</td>
+                            <td>ginecologia</td>
+                            <td>GN-3210</td>
+                            <td>vespertino</td>
+                            <td>22/09/98</td>
+                            <td>12:00 pm/4:00 pm</td>
+                            <td>Epineda3210@gmail.com</td>
+                            <td>PIME980922PQR</td>
+                            <td>calle la mero 3456-2</td>
+                        </tr>
+                        <tr>
+                            <td>78942</td>
+                            <td>Dr.Marco Sanz</td>
+                            <td>pediatria</td>
+                            <td>PD-9855</td>
+                            <td>matutino</td>
+                            <td>02/12/99</td>
+                            <td>7:00 am/12:00 pm</td>
+                            <td>Marcosanz68@gmail.com</td>
+                            <td>SAMM9912025WN</td>
+                            <td>fortaleza naranja.9807-1</td>
+                        </tr>
+                        <tr>
+                            <td>10123</td>
+                            <td>Dra.Lucia Valle</td>
+                            <td>cardiologia</td>
+                            <td>CR-122</td>
+                            <td>matutino</td>
+                            <td>10/07/20</td>
+                            <td>6:00 am/10:00 am</td>
+                            <td>DraLuciaValle@gmail.com</td>
+                            <td>VAML000710ROP</td>
+                            <td>zaragoza. av roja 7654-1</td>
+                        </tr>
+                        <tr>
+                            <td>21093</td>
+                            <td>Dr.Javier Reyes</td>
+                            <td>dermatologia</td>
+                            <td>DR-7744</td>
+                            <td>vespertino</td>
+                            <td>28/08/89</td>
+                            <td>4:00 pm/10:00 pm</td>
+                            <td>JreyesDR@gmail.com</td>
+                            <td>REMJ890828BDE</td>
+                            <td>calle. roma 120</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <p>NOMBRE: LOZANO LINARES MARCO ANTONIO | NO. CONTROL: 0587</p>
+        <p>SEMESTRE: 4TO SEMESTRE | GRUPO: 4*I | ESPECIALIDAD: PROGRAMACION</p>
+    </footer>
+    <script>
+        document.getElementById('formMedicos').onsubmit = function(e) {
+            e.preventDefault();
+            let tabla = document.getElementById('tablaMedicos').getElementsByTagName('tbody')[0];
+            let fila = tabla.insertRow();
+            fila.innerHTML = `
+                <td>${document.getElementById('m_id').value}</td>
+                <td>${document.getElementById('m_nombre').value}</td>
+                <td>${document.getElementById('m_especialidad').value}</td>
+                <td>${document.getElementById('m_colegiado').value}</td>
+                <td>${document.getElementById('m_turno').value}</td>
+                <td>${document.getElementById('m_nacimiento').value}</td>
+                <td>${document.getElementById('m_horario').value}</td>
+                <td>${document.getElementById('m_correo').value}</td>
+                <td>${document.getElementById('m_rfc').value}</td>
+                <td>${document.getElementById('m_direccion').value}</td>
+            `;
+            this.reset();
+        };
+    </script>
+</body>
+</html>

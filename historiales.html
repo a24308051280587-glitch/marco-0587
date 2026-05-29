@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CLINICA EL TURRIS - HISTORIALES</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { margin: 0; background-color: #F5F5F5; }
+        header { background-color: #FFFACD; color: black; text-align: center; padding: 20px; border-bottom: 2px solid #F0E68C; }
+        header h1 { margin: 5px 0; font-size: 28px; }
+        .container { display: flex; width: 100%; min-height: 100vh; }
+        nav { flex: 20%; background-color: #F0E68C; padding: 20px; border-right: 1px solid #dcd373; }
+        nav h3 { margin-top: 0; font-size: 18px; border-bottom: 1px solid black; padding-bottom: 5px; }
+        nav ul { list-style: none; padding: 0; margin: 0; }
+        nav ul li { margin-bottom: 15px; }
+        nav a { display: block; color: black; font-weight: bold; text-decoration: none; padding: 8px 5px; border-radius: 4px; }
+        nav a:hover { background-color: #FFFACD; text-decoration: underline; }
+        main { flex: 80%; padding: 25px; background-color: #F5F5F5; }
+        main h2 { margin-top: 0; color: #333; }
+        .form-container { background: white; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 2px solid #F0E68C; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .form-container h3 { margin-top: 0; color: #333; border-bottom: 1px solid #F0E68C; padding-bottom: 5px; }
+        .form-group { margin-bottom: 12px; display: inline-block; width: 24%; padding: 0 5px; vertical-align: top; }
+        .form-group-full { margin-bottom: 12px; display: inline-block; width: 48%; padding: 0 5px; vertical-align: top; }
+        label { display: block; font-weight: bold; font-size: 13px; margin-bottom: 4px; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
+        .btn-submit { background-color: #F0E68C; color: black; border: 1px solid #dcd373; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 14px; }
+        .btn-submit:hover { background-color: #e6dc7e; }
+        .table-responsive { width: 100%; overflow-x: auto; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; background-color: white; font-size: 13px; min-width: 1100px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #F0E68C; color: black; font-weight: bold; }
+        tr:nth-child(even) { background-color: #F9F9F9; }
+        footer { background-color: #FFFACD; text-align: center; padding: 15px; font-size: 13px; border-top: 2px solid #F0E68C; }
+        footer p { margin: 4px 0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CLINICA EL TURRIS</h1>
+    </header>
+    <div class="container">
+        <nav>
+            <h3>MENU</h3>
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="pacientes.html">PACIENTES</a></li>
+                <li><a href="medicos.html">MEDICOS</a></li>
+                <li><a href="citas.html">CITAS</a></li>
+                <li><a href="historiales.html" style="background-color: #FFFACD; text-decoration: underline;">HISTORIALES</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Control de Historiales Clinicos</h2>
+            <p>Seccion para revisar los antecedentes medicos de los pacientes:</p>
+            <div class="form-container">
+                <h3>Registrar Antecedente en Historial</h3>
+                <form id="formHistoriales">
+                    <div class="form-group"><label>Nombre Paciente:</label><input type="text" id="h_paciente" required></div>
+                    <div class="form-group"><label>Antecedentes:</label><input type="text" id="h_antecedentes" required></div>
+                    <div class="form-group"><label>Alergias:</label><input type="text" id="h_alergias" required></div>
+                    <div class="form-group"><label>Consultas Anteriores:</label><input type="number" id="h_consultas" required></div>
+                    <div class="form-group"><label>Medico Atendio:</label><input type="text" id="h_medico" required></div>
+                    <div class="form-group"><label>Seguro Medico:</label><input type="text" id="h_seguro" required placeholder="si / no"></div>
+                    <div class="form-group-full"><label>Incapacidades:</label><input type="text" id="h_incapacidades" required></div>
+                    <button type="submit" class="btn-submit">Registrar Historial</button>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table id="tablaHistoriales">
+                    <thead>
+                        <tr>
+                            <th>nombre_paciente</th>
+                            <th>antecedentes</th>
+                            <th>alergias</th>
+                            <th>consultas_anteriores</th>
+                            <th>Dr_que_atendio_al_pa</th>
+                            <th>seguro_medico</th>
+                            <th>incapacidades</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alejandra Sanz Lara</td>
+                            <td>asma infantil</td>
+                            <td>AINES</td>
+                            <td>4</td>
+                            <td>Dr. Roberto Arieta</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Beatriz Ferrer Ponz</td>
+                            <td>ninguno</td>
+                            <td>nuez,sol</td>
+                            <td>2</td>
+                            <td>Dra.Elena Pineda</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Mendez Ruiz</td>
+                            <td>hipertension</td>
+                            <td>enalapril</td>
+                            <td>4</td>
+                            <td>Dra.Lucia Valle</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Daniela Rosa Vega</td>
+                            <td>prematuro</td>
+                            <td>chocolate,nuez</td>
+                            <td>4</td>
+                            <td>Dr.Marco Sanz</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Eduardo Gomez Paz</td>
+                            <td>ninguno</td>
+                            <td>coiticoides, luz solar</td>
+                            <td>3</td>
+                            <td>Dr.Marco Sanz</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Fernanda Laura Solis</td>
+                            <td>diabetes</td>
+                            <td>sulfas</td>
+                            <td>5</td>
+                            <td>Dr.Javier Reyes</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Gabriel Castro Dominguez</td>
+                            <td>diabetes tipo 2</td>
+                            <td>anticonvulsivantes, insulina</td>
+                            <td>5</td>
+                            <td>Dr.Roberto Arieta</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Helena Ortiz Ogaz</td>
+                            <td>migraña</td>
+                            <td>aines</td>
+                            <td>1</td>
+                            <td>Dr.Roberto Arieta</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Ignacio Marin Jara</td>
+                            <td>fumador activo</td>
+                            <td>frutos secos</td>
+                            <td>3</td>
+                            <td>Dra.Lucia Valle</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>Julia Gonzalez Quiñonez</td>
+                            <td>ninguno</td>
+                            <td>moho,pelo de animales</td>
+                            <td>2</td>
+                            <td>Dra.Elena Pineda</td>
+                            <td>si</td>
+                            <td>ninguna</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <p>NOMBRE: LOZANO LINARES MARCO ANTONIO | NO. CONTROL: 0587</p>
+        <p>SEMESTRE: 4TO SEMESTRE | GRUPO: 4*I | ESPECIALIDAD: PROGRAMACION</p>
+    </footer>
+    <script>
+        document.getElementById('formHistoriales').onsubmit = function(e) {
+            e.preventDefault();
+            let tabla = document.getElementById('tablaHistoriales').getElementsByTagName('tbody')[0];
+            let fila = tabla.insertRow();
+            fila.innerHTML = `
+                <td>${document.getElementById('h_paciente').value}</td>
+                <td>${document.getElementById('h_antecedentes').value}</td>
+                <td>${document.getElementById('h_alergias').value}</td>
+                <td>${document.getElementById('h_consultas').value}</td>
+                <td>${document.getElementById('h_medico').value}</td>
+                <td>${document.getElementById('h_seguro').value}</td>
+                <td>${document.getElementById('h_incapacidades').value}</td>
+            `;
+            this.reset();
+        };
+    </script>
+</body>
+</html>
